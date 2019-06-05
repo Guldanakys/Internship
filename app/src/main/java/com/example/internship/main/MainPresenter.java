@@ -26,15 +26,16 @@ public class MainPresenter {
         getObservable().subscribeWith(getObserver());
     }
 
-    public Observable<List<Restaurant>> getObservable() {
+    private Observable<List<Restaurant>> getObservable() {
         return NetworkClient.getInstance()
                 .getNetworkApi()
-                .getRestaurants()
+                //.getRestaurants(20, 60)
+                .getAllRestaurants()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public DisposableObserver<List<Restaurant>> getObserver() {
+    private DisposableObserver<List<Restaurant>> getObserver() {
         return new DisposableObserver<List<Restaurant>>() {
             @Override
             public void onNext(List<Restaurant> restaurantList) {
