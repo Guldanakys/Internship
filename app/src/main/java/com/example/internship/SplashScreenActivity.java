@@ -2,11 +2,13 @@ package com.example.internship;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import com.example.internship.main.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
