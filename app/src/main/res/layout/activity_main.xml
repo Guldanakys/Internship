@@ -27,11 +27,9 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageview_banner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -45,7 +43,7 @@
         app:tabSelectedTextColor="@color/logo_red"
         app:tabTextColor="@android:color/darker_gray"
         android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_banner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

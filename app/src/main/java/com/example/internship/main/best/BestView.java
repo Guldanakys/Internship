@@ -8,5 +8,5 @@ public interface BestView {
 
     void showRestaurants(List<Restaurant> restaurantList);
 
-    void showError();
+    void showError(String errorMessage);
 }

@@ -36,7 +36,7 @@ public class FragmentBest extends Fragment implements BestView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.best_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_best, container, false);
         ButterKnife.bind(this, view);
 
         initUI();
@@ -61,7 +61,7 @@ public class FragmentBest extends Fragment implements BestView {
     }
 
     @Override
-    public void showError() {
-        Toast.makeText(getActivity(), "Network failure", Toast.LENGTH_SHORT).show();
+    public void showError(String errorMessage) {
+        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 }

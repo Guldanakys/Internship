@@ -5,42 +5,25 @@ import android.os.Handler;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.example.internship.main.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
-
-    private ConstraintLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        mLayout = findViewById(R.id.splash_layout);
-
-        fadeInAnimation();
-
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startMain();
-            }
-        }, 1000);
+        handler.postDelayed(() -> startMain(), 2000);
 
-    }
-
-    private void fadeInAnimation() {
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        mLayout.setAnimation(fadeIn);
     }
 
     public void startMain() {
-        Intent starter = new Intent(SplashScreenActivity.this, MainActivity.class);
-        startActivity(starter);
+        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
         finish();
     }
 }

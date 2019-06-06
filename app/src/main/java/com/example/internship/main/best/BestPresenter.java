@@ -17,7 +17,7 @@ public class BestPresenter {
 
     private BestView mBestView;
 
-    private String TAG = "BestPresenter";
+    private final static String TAG = "BestPresenter";
 
     public BestPresenter(BestView bestView) {
         mBestView = bestView;
@@ -47,7 +47,7 @@ public class BestPresenter {
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG,"onError" + e);
-                mBestView.showError();
+                mBestView.showError("Unable to fetch data");
             }
 
             @Override
