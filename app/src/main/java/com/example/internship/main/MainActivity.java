@@ -1,30 +1,26 @@
 package com.example.internship.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.internship.R;
-import com.example.internship.adapters.RestaurantAdapter;
-import com.example.internship.models.Restaurant;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.internship.adapters.ViewPagerAdapter;
+import com.example.internship.main.best.FragmentBest;
+import com.example.internship.main.favorite.FragmentFavorite;
+import com.example.internship.main.popular.FragmentPopular;
+import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity {
 
-    private MainPresenter mMainPresenter;
-    private RestaurantAdapter mRestaurantAdapter;
-    private List<Restaurant> mRestaurantList;
+    private ViewPagerAdapter mViewPagerAdapter;
 
-    @BindView(R.id.recycler_restaurants) RecyclerView mRestaurantsRecycler;
+    @BindView (R.id.tablayout) TabLayout mTabLayout;
+    @BindView (R.id.viewpager) ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +28,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initUI();
+        setupViewPager();
 
-        mMainPresenter.getRestaurants();
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    private void initUI() {
-        mMainPresenter = new MainPresenter(this);
-        mRestaurantList = new ArrayList<>();
-        mRestaurantsRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mRestaurantAdapter = new RestaurantAdapter(mRestaurantList, this);
-        mRestaurantsRecycler.setAdapter(mRestaurantAdapter);
-    }
-
-    @Override
-    public void showRestaurants(List<Restaurant> restaurantList) {
-        mRestaurantList.addAll(restaurantList);
-        mRestaurantAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showError() {
-        Toast.makeText(this, "Network failure", Toast.LENGTH_SHORT).show();
+    private void setupViewPager() {
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mViewPagerAdapter.addFragment(new FragmentBest(), "Лучшее");
+        mViewPagerAdapter.addFragment(new FragmentPopular(), "Популярное");
+        mViewPagerAdapter.addFragment(new FragmentFavorite(), "Избранное");
     }
 
     @Override

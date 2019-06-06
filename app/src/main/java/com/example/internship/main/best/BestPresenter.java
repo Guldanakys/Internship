@@ -1,7 +1,8 @@
-package com.example.internship.main;
+package com.example.internship.main.best;
 
 import android.util.Log;
 
+import com.example.internship.main.best.BestView;
 import com.example.internship.models.Restaurant;
 import com.example.internship.network.NetworkClient;
 
@@ -12,14 +13,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainPresenter {
+public class BestPresenter {
 
-    private MainView mMainView;
+    private BestView mBestView;
 
-    private String TAG = "MainPresenter";
+    private String TAG = "BestPresenter";
 
-    public MainPresenter(MainView mainView) {
-        mMainView = mainView;
+    public BestPresenter(BestView bestView) {
+        mBestView = bestView;
     }
 
     public void getRestaurants() {
@@ -40,13 +41,13 @@ public class MainPresenter {
             @Override
             public void onNext(List<Restaurant> restaurantList) {
                 Log.d(TAG,"onNext");
-                mMainView.showRestaurants(restaurantList);
+                mBestView.showRestaurants(restaurantList);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG,"onError" + e);
-                mMainView.showError();
+                mBestView.showError();
             }
 
             @Override
