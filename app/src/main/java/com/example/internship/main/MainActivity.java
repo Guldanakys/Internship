@@ -4,17 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.internship.R;
-import com.example.internship.RestaurantAdapter;
+import com.example.internship.adapters.RestaurantAdapter;
 import com.example.internship.models.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
@@ -22,22 +24,25 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private RestaurantAdapter mRestaurantAdapter;
     private List<Restaurant> mRestaurantList;
 
-    private RecyclerView mRestaurantsRecycler;
+    @BindView(R.id.recycler_restaurants) RecyclerView mRestaurantsRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
+        initUI();
+
+        mMainPresenter.getRestaurants();
+    }
+
+    private void initUI() {
         mMainPresenter = new MainPresenter(this);
-
         mRestaurantList = new ArrayList<>();
-        mRestaurantsRecycler = (RecyclerView) findViewById(R.id.recycler_restaurants);
         mRestaurantsRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRestaurantAdapter = new RestaurantAdapter(mRestaurantList, this);
         mRestaurantsRecycler.setAdapter(mRestaurantAdapter);
-
-        mMainPresenter.getRestaurants();
     }
 
     @Override

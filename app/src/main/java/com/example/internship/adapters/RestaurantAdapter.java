@@ -1,4 +1,4 @@
-package com.example.internship;
+package com.example.internship.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.internship.R;
 import com.example.internship.models.Restaurant;
+import com.example.internship.viewholders.RestaurantViewHolder;
 
 import java.util.List;
 

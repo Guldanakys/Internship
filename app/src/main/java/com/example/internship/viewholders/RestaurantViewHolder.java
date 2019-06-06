@@ -1,4 +1,4 @@
-package com.example.internship;
+package com.example.internship.viewholders;
 
 import android.content.Context;
 import android.view.View;
@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.internship.R;
 import com.example.internship.models.Restaurant;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RestaurantViewHolder extends RecyclerView.ViewHolder {
 
-    private ImageView mImage;
-    private TextView mTitle;
+    @BindView(R.id.imageview_restaurant) ImageView mImage;
+    @BindView(R.id.textview_title) TextView mTitle;
 
     public RestaurantViewHolder(@NonNull View itemView) {
         super(itemView);
-
-        mTitle = (TextView) itemView.findViewById(R.id.textview_title);
-        mImage = (ImageView) itemView.findViewById(R.id.imageview_restaurant);
+        ButterKnife.bind(this, itemView);
     }
 
     public void bind(Restaurant restaurant, Context context) {

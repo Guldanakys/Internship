@@ -29,8 +29,8 @@ public class MainPresenter {
     private Observable<List<Restaurant>> getObservable() {
         return NetworkClient.getInstance()
                 .getNetworkApi()
-                //.getRestaurants(20, 60)
-                .getAllRestaurants()
+                //.getAllRestaurants()
+                .getRestaurants(20, 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
