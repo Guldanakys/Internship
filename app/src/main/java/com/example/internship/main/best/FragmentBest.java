@@ -26,6 +26,7 @@ public class FragmentBest extends Fragment implements BestView {
 
     private BestPresenter mBestPresenter;
     private RestaurantAdapter mRestaurantAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
     private List<Restaurant> mRestaurantList;
 
     @BindView(R.id.recycler_restaurants) RecyclerView mRestaurantsRecycler;
@@ -49,8 +50,10 @@ public class FragmentBest extends Fragment implements BestView {
     private void initUI() {
         mBestPresenter = new BestPresenter(this);
         mRestaurantList = new ArrayList<>();
-        mRestaurantsRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRestaurantAdapter = new RestaurantAdapter(mRestaurantList, getActivity());
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRestaurantsRecycler.setLayoutManager(mLayoutManager);
+        mRestaurantAdapter = new RestaurantAdapter(getActivity());
+        mRestaurantAdapter.setRestaurantList(mRestaurantList);
         mRestaurantsRecycler.setAdapter(mRestaurantAdapter);
     }
 

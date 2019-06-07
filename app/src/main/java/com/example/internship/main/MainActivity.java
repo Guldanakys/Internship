@@ -39,17 +39,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mMainPresenter = new MainPresenter(this);
         mMainPresenter.getBanner();
 
-        setupViewPager();
-
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-    }
-
-    private void setupViewPager() {
-        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mViewPagerAdapter.addFragment(new FragmentBest(), "Лучшее");
-        mViewPagerAdapter.addFragment(new FragmentPopular(), "Популярное");
-        mViewPagerAdapter.addFragment(new FragmentFavorite(), "Избранное");
     }
 
     @Override

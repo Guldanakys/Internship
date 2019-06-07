@@ -12,6 +12,7 @@ import com.example.internship.R;
 import com.example.internship.models.Restaurant;
 import com.example.internship.viewholders.RestaurantViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder> {
@@ -20,9 +21,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder
 
     private Context mContext;
 
-    public RestaurantAdapter(List<Restaurant> restaurantList, Context context) {
-        mRestaurantList = restaurantList;
+    private boolean isLoadingAdded = false;
+
+    public RestaurantAdapter(Context context) {
+        mRestaurantList = new ArrayList<>();
         mContext = context;
+    }
+
+    public RestaurantAdapter(List<Restaurant> restaurantList) {
+        mRestaurantList = restaurantList;
     }
 
     @NonNull
@@ -43,4 +50,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder
     public int getItemCount() {
         return mRestaurantList.size();
     }
+
+    public void setRestaurantList(List<Restaurant> restaurantList){
+        mRestaurantList = restaurantList;
+        notifyDataSetChanged();
+    }
+
+    public void addRestaurants(List<Restaurant> restaurants){
+        mRestaurantList.addAll(restaurants);
+        notifyDataSetChanged();;
+    }
+
 }

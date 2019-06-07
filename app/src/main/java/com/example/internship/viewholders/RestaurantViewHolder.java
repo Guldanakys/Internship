@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.internship.R;
 import com.example.internship.models.Restaurant;
+import com.joooonho.SelectableRoundedImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RestaurantViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.imageview_restaurant) ImageView mImage;
+    @BindView(R.id.imageview_restaurant) SelectableRoundedImageView mImage;
     @BindView(R.id.textview_title) TextView mTitle;
 
     public RestaurantViewHolder(@NonNull View itemView) {

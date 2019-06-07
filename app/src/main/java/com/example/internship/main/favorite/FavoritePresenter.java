@@ -1,8 +1,7 @@
-package com.example.internship.main.best;
+package com.example.internship.main.favorite;
 
 import android.util.Log;
 
-import com.example.internship.main.best.BestView;
 import com.example.internship.models.Restaurant;
 import com.example.internship.network.NetworkClient;
 
@@ -13,24 +12,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class BestPresenter {
+public class FavoritePresenter {
 
-    private BestView mBestView;
+    private FavoriteView mFavoriteView;
 
-    private final static String TAG = "BestPresenter";
+    private final static String TAG = "FavoritePresenter";
 
-    public BestPresenter(BestView bestView) {
-        mBestView = bestView;
+    public FavoritePresenter(FavoriteView favoriteView) {
+        mFavoriteView = favoriteView;
     }
 
-    public void getRestaurants() {
-        getObservable().subscribeWith(getObserver());
+    public void getRestaurants(Integer offset) {
+        getObservable(offset).subscribeWith(getObserver());
     }
 
-    private Observable<List<Restaurant>> getObservable() {
+    private Observable<List<Restaurant>> getObservable(Integer offset) {
         return NetworkClient.getInstance()
                 .getNetworkApi()
-                .getAllRestaurants()
+                .getRestaurants(20, offset)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -40,13 +39,13 @@ public class BestPresenter {
             @Override
             public void onNext(List<Restaurant> restaurantList) {
                 Log.d(TAG,"onNext");
-                mBestView.showRestaurants(restaurantList);
+                mFavoriteView.showRestaurants(restaurantList);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG,"onError" + e);
-                mBestView.showError("Unable to fetch data");
+                mFavoriteView.showError("Unable to fetch data");
             }
 
             @Override
